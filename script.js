@@ -7,7 +7,7 @@ const form   = document.getElementById("form");
 const search = document.getElementById("search");
 const button = document.getElementById('button');
 
-async function main(url){
+async function getMovies(url){
     const resp = await fetch(url);
     const respData = await resp.json();
 
@@ -142,4 +142,4 @@ form.addEventListener("submit", (e) => {
 
 });
 
-main(APIURL);
+getMovies(APIURL);
