@@ -13,7 +13,6 @@ header {
     padding: 1rem;
     margin-bottom: 5rem;
     width: 100%;
-
 }
 
  h1{
@@ -175,7 +174,7 @@ main {
     transform: translateY(0);
 }
 
+.trailer.h3{
+    border: 1px solid #22254b;
 
-h6{
-    font-family: inherit;
-} 
+}
