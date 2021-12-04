@@ -2,22 +2,9 @@ import {createMovieDev} from './createMovieDev.js';
 
 export function showMovies(movies){
 
-       movies.forEach((movie) => {
-          // console.log(movie)
-            const {poster_path, title, vote_average, overview, id} = movie;
-
-            getVideoLink(id).then(function(youtubeLink) {
-                createMovieDev(movieEl, youtubeLink, poster_path, title, vote_average, overview);  
-                main.appendChild(movieEl);
-        })
-
-        main.innerHTML = "";
-        const movieEl = document.createElement("div");
-        movieEl.classList.add("movie");      
-
-            }, function(error){
+    createMoviesDivs(movies) , function(error){
                 console.log("error movies dev not loaded");
-            }); 
+            }; 
 
 }
 
@@ -42,9 +29,32 @@ async function getVideoLink(id){
 
 function getYoutubeAPILink(id){
 
-    const API_URL_YT1 = "https://api.themoviedb.org/3/movie/"
-    const API_URL_YT2 = "?api_key=0e201fa7e4708e6b192b79428e836ef9&language=en-US&append_to_response=videos"
+    const API_URL_YT1 = "https://api.themoviedb.org/3/movie/";
+
+    const API_URL_YT2 = "?api_key=0e201fa7e4708e6b192b79428e836ef9&language=en-US&append_to_response=videos";
 
     return(API_URL_YT1+id+API_URL_YT2)
 
+}
+
+function createMoviesDivs(movies){
+
+    movies.forEach((movie) => {
+
+        const {poster_path, title, vote_average, overview, id} = movie;
+          
+          getVideoLink(id).then(function(youtubeLink) {
+
+              createMovieDev(movieEl, youtubeLink, poster_path, title, vote_average, overview);  
+
+              main.appendChild(movieEl);
+      })
+
+      main.innerHTML = "";
+
+      const movieEl = document.createElement("div");
+
+      movieEl.classList.add("movie");      
+
+          })
 }

@@ -3,38 +3,15 @@ import {API_URL, SEARCH_API} from "./modules/links.js";
 import {getMovies}  from "./modules/getMovies.js";
 
 
-function mainFunction() {
+function main() {
 
-    const main   = document.getElementById("main");
     const form   = document.getElementById("form");
-    const search = document.getElementById("search");
-    const createButton = document.getElementById('createButton');
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", (event) => {
 
-        e.preventDefault();
+        const searchTerm = gerUsersSearch(event)
 
-        let searchTerm = search.value;
-
-        createButton.innerHTML = 
-        `
-        <button id="button"> SORT BY TITLE 
-        </button>
-        `
-
-        document.getElementById("button").addEventListener("click", function() {
-            sortMoviesByTitle(searchTerm);
-          });
-    
-        if (searchTerm) {
-            getMovies(SEARCH_API + searchTerm);
-            //button.style.visibility = 'visible'
-        }
-    
-        else{
-            button.style.visibility = 'hidden'
-            console.log('pas de searchTerm')
-        }   
+        giveUserAnswer(searchTerm)
     
     });
     
@@ -44,4 +21,32 @@ function mainFunction() {
 }
 
 
-mainFunction()
+function gerUsersSearch(e){
+
+    e.preventDefault();
+
+    let searchTerm = search.value;
+
+    createButton.innerHTML = 
+    `
+    <button id="button"> SORT BY TITLE 
+    </button>
+    `
+
+    return(searchTerm)
+}
+
+function giveUserAnswer(searchTerm){
+
+    document.getElementById("button").addEventListener("click", function() {
+        sortMoviesByTitle(searchTerm);
+      });
+
+    if (searchTerm) {
+        getMovies(SEARCH_API + searchTerm);
+    }
+
+
+}
+
+main()

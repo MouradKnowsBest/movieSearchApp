@@ -6,10 +6,11 @@ export async function sortMoviesByTitle(searchTerm){
 
     console.log('the search temr is : ', searchTerm)
 
-    const resp = await fetch(SEARCH_API + searchTerm);
-    const respData = await resp.json();
-    sortByTitle(respData.results);
-    showMovies(respData.results);
+    const moviesData = await getData(searchTerm)
+
+    sortByTitle(moviesData);
+    
+    showMovies(moviesData);
 }
 
 function sortByTitle(movies) {
@@ -19,4 +20,9 @@ function sortByTitle(movies) {
 
 }
 
+async function getData(searchTerm){
+    const resp = await fetch(SEARCH_API + searchTerm);
+    const respData = await resp.json();
 
+    return respData.results
+}
