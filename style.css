@@ -138,6 +138,12 @@ main {
     padding: 0.25rem 0.5rem;
 }
 
+.budget{
+ color: #22254b;   
+ font-size: 20px;
+
+}
+
 .movie-info span.green {
     color: rgb(39, 189, 39);
 }
@@ -167,7 +173,7 @@ main {
 }
 
 .overview h3 {
-    margin-top: 0;
+    margin-top: 40px;
 }
 
 .movie:hover .overview {

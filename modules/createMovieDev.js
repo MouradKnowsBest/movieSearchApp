@@ -1,17 +1,17 @@
 import {IMG_PATH} from './links.js';
 
-export async function createMovieDev(movieEl, youtubeLink, poster_path, title, vote_average, overview){
+export async function createMovieDev(movieEl, youtubeLink, poster_path, title, vote_average, overview, movieBudget){
 
     var imgPath = IMG_PATH + poster_path 
 
     var lastFour = imgPath.substr(imgPath.length - 4); // => last 4 letters
  
     if (lastFour == "null") { // error handling
-        createMoviesDivWithError(movieEl, youtubeLink, poster_path, title, vote_average, overview)
+        createMoviesDivWithError(movieEl, youtubeLink, poster_path, title, vote_average, overview, movieBudget)
     }
 
     else {
-        createMoviesDiv(movieEl, youtubeLink, poster_path, title, vote_average, overview)
+        createMoviesDiv(movieEl, youtubeLink, poster_path, title, vote_average, overview, movieBudget)
    }
  
    }
@@ -27,7 +27,7 @@ function getClassByRate(vote) {
     }
 }
 
-function createMoviesDivWithError(movieEl, youtubeLink, vote_average, overview){
+function createMoviesDivWithError(movieEl, youtubeLink, vote_average, overview, movieBudget){
     movieEl.classList.add("movie");
 
     movieEl.innerHTML = `
@@ -37,7 +37,7 @@ function createMoviesDivWithError(movieEl, youtubeLink, vote_average, overview){
     />
 
     <div class="movie-info">
-        <h2> ERROR : Sorry Image not found </h3>
+        <h3> ERROR : Sorry Image not found </h3>
         <span class="${getClassByRate(vote_average)}">
         ${vote_average}</span>
     </div>
@@ -49,6 +49,7 @@ function createMoviesDivWithError(movieEl, youtubeLink, vote_average, overview){
     </a>
       <h3>Overview:</h3>
       ${overview}
+      <h3>Budjet:</h3> <strong class="budget"> ${formatNumber(movieBudget)} $ </strong>
   </div>
 
     `;
@@ -56,7 +57,11 @@ function createMoviesDivWithError(movieEl, youtubeLink, vote_average, overview){
     main.appendChild(movieEl);
 }
 
-function createMoviesDiv(movieEl, youtubeLink, poster_path, title, vote_average, overview) {
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+
+function createMoviesDiv(movieEl, youtubeLink, poster_path, title, vote_average, overview, movieBudget) {
     movieEl.innerHTML = `
 
     <img
@@ -77,6 +82,7 @@ function createMoviesDiv(movieEl, youtubeLink, poster_path, title, vote_average,
 
         <h3>Overview:</h3>
         ${overview}
-    </div>
+        <h3>Budjet:</h3> <strong class="budget"> ${formatNumber(movieBudget)} $ </strong>
+        </div>
     `;
 }

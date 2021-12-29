@@ -1,8 +1,10 @@
 import {showMovies} from './showMovies.js';
 
-export async function getMovies(url){
+export async function getMovies(url, id){
 
     const moviesData = await getData(url);
+
+
 
     sortMoviesByRatings (moviesData);
 
@@ -14,8 +16,10 @@ export async function getMovies(url){
 async function getData(url){
     const resp = await fetch(url);
     const respData = await resp.json();
+    console.log(respData.results)
     return (respData.results)
 }    
+
 
     
 function sortMoviesByRatings(movies) {

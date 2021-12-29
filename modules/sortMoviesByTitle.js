@@ -23,6 +23,5 @@ function sortByTitle(movies) {
 async function getData(searchTerm){
     const resp = await fetch(SEARCH_API + searchTerm);
     const respData = await resp.json();
-
     return respData.results
 }
