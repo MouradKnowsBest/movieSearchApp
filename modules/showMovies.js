@@ -41,30 +41,23 @@ function getYoutubeAPILink(id){
 async function getMovieBudget(url){
     const resp = await fetch(url);
     const respData = await resp.json() 
-    console.log(respData.budget)
-
     return respData.budget
 }
  
-
-
 
 function createMoviesDivs(movies){
 
     movies.forEach((movie) => {
 
-        const {poster_path, title, vote_average, overview, id} = movie;
+        const {poster_path, title, vote_average, overview, id, release_date} = movie;
 
-        const movieBudget = getMovieBudget('https://api.themoviedb.org/3/movie/' + id+"?api_key=04c35731a5ee918f014970082a0088b1&query=" + '&language=en-US').then(function(movieBudget) {
-
-
-        console.log(movieBudget)
+        const movieBudget = getMovieBudget("https://api.themoviedb.org/3/movie/" + id+"?api_key=04c35731a5ee918f014970082a0088b1&query=&language=en-US").then(function(movieBudget) {
 
           
           getVideoLink(id).then(function(youtubeLink) {
 
 
-              createMovieDev(movieEl, youtubeLink, poster_path, title, vote_average, overview, movieBudget);  
+              createMovieDev(movieEl, youtubeLink, poster_path, title, vote_average, overview, movieBudget, release_date);  
 
               main.appendChild(movieEl);
 

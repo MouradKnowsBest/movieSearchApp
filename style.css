@@ -138,10 +138,15 @@ main {
     padding: 0.25rem 0.5rem;
 }
 
+
+.release-date{
+    color: #22254b;   
+    font-size: 20px;
+   }
+
 .budget{
  color: #22254b;   
  font-size: 20px;
-
 }
 
 .movie-info span.green {
